@@ -1,35 +1,37 @@
 import React from 'react';
 import { Container, Repository } from './styles';
 
-const CompareList = () => (
+const CompareList = ({ repositories }) => (
     <Container>
-        <Repository>
-            <header>
-                <img
-                    src="https://avatars3.githubusercontent.com/u/69631?v=4"
-                    alt="facebook logo"
-                />
-                <strong>React</strong>
-                <small>Facebook</small>
-            </header>
-            <ul>
-                <li>
-                    95,019 <small>Stars</small>
-                </li>
-                <li>
-                    95,019 <small>Forks</small>
-                </li>
-                <li>
-                    95,019 <small>Issues</small>
-                </li>
-                <li>
-                    3 days ago <small>Last Commits</small>
-                </li>
-                <li>
-                    95,019 <small>Stars</small>
-                </li>
-            </ul>
-        </Repository>
+        {repositories.map(repository => (
+            <Repository key={repository.id}>
+                <header>
+                    <img
+                        src={repository.owner.avatar_url}
+                        alt="facebook logo"
+                    />
+                    <strong>{repository.name}</strong>
+                    <small>{repository.owner.login}</small>
+                </header>
+                <ul>
+                    <li>
+                        {repository.stargazers_count} <small>Stars</small>
+                    </li>
+                    <li>
+                        {repository.forks_count} <small>Forks</small>
+                    </li>
+                    <li>
+                        {repository.open_issues_count} <small>Issues</small>
+                    </li>
+                    <li>
+                        {repository.updated_at}<small>Last Commits</small>
+                    </li>
+                    <li>
+                        {repository.stargazers_count}<small>Stars</small>
+                    </li>
+                </ul>
+            </Repository>
+        ))}
     </Container>
 );
 

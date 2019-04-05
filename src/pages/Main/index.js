@@ -12,7 +12,7 @@ export default class Main extends React.Component {
 
     handleForm = async (e) => {
         e.preventDefault();
-
+        e.target.reset(); // reset form fields after submit
         await api
             .get(`/repos/${this.state.repositoryInput}`)
             .then((response) => {
